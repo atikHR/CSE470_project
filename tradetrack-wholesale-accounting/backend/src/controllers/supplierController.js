@@ -43,6 +43,39 @@ const deleteProductCategory = async (req, res) => {
 	}
 };
 
+const addProduct = async (req, res) => {
+	const { company, productID, modelNo, category, stockAvailable, photoURL, productcategoryid } = req.body;
+	try {
+		const newProduct = await supplierModels.addProduct(
+			company,
+			productID,
+			modelNo,
+			category,
+			stockAvailable,
+			photoURL || "example.com",
+			productcategoryid
+		);
+		res.status(201).json({ message: "Product added successfully!", product: newProduct });
+	} catch (error) {
+		console.error("Error adding product:", error);
+		res.status(500).json({
+			message: "Internal Server Error",
+		});
+	}
+};
+
+const getProducts = async (req, res) => {
+	try {
+		const products = await supplierModels.getProducts();
+		res.status(200).json({ list: products });
+	} catch (error) {
+		console.error("Error getting products:", error);
+		res.status(500).json({
+			message: "Internal Server Error",
+		});
+	}
+};
+
 // async function getStatementDesc(req, res) {
 // 	try {
 // 		const transactions = await getStatementDesc();
@@ -57,4 +90,6 @@ module.exports = {
 	getProductCategory,
 	addProductCategory,
 	deleteProductCategory,
+	addProduct,
+	getProducts,
 };

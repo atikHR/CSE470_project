@@ -68,9 +68,24 @@ async function getProductCategory() {
 	}
 }
 
+async function getProducts() {
+	try {
+		const products = await prisma.supplierCompInfo.findMany({
+			include: {
+				productCategory: true
+			}
+		});
+		return products;
+	} catch (error) {
+		console.error("Error getting products:", error);
+		throw error;
+	}
+}
+
 module.exports = {
 	addProductCategory,
 	addProduct,
 	getProductCategory,
+	getProducts,
 	deleteProductCategory,
 };

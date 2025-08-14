@@ -1,23 +1,28 @@
 const { PrismaClient } = require("@prisma/client");
+const bcrypt = require("bcryptjs");
 const prisma = new PrismaClient();
 require("dotenv").config();
 
 //data insert
 async function main() {
-    const userInfoCount = await prisma.userInfo.count();
-    if (userInfoCount === 0) {
-        await prisma.userInfo.createMany({
-            data: [
-                {
-                    name: "Fahim Ahmed",
-                    email: "fahim.ahmed@gmail.com",
-                    password: "ftgtg123456",
-                    phoneNumber: "01712345678",
-                    role: "ADMIN",
-                    district: "Dhaka",
-                    subDistrict: "Gulshan",
-                    address: "House 1, Road 1, Block A, Gulshan",
-                    photoURL: "https://www.google.com",
+    console.log('Starting database seeding...');
+
+    // Create a default owner
+    const hashedPassword = await bcrypt.hash('password123', 10);
+    
+    const ownerCount = await prisma.owner.count();
+    if (ownerCount === 0) {
+        const owner = await prisma.owner.create({
+            data: {
+                name: 'Admin User',
+                email: 'admin@tradetrack.com',
+                password: hashedPassword,
+                phoneNumber: '+1234567890',
+                photoURL: 'https://via.placeholder.com/150',
+            }
+        });
+        console.log('Created default owner:', owner);
+    }
                 },
                 {
                     name: "Nahid Hasan",

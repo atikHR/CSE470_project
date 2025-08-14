@@ -7,5 +7,9 @@ router.post("/delete", bankController.deleteBank);
 
 router.post("/accountinfo", bankController.getBankAccountInfo);
 router.post("/accountlist", bankController.getBankAccountList);
+router.post("/account/add", bankController.addBankAccount);
+
+router.post("/transactions/list", bankController.getBankTransactions);
+router.post("/transactions/add", bankController.addBankTransaction);
 
 module.exports = router;

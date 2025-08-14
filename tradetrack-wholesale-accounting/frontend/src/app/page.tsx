@@ -12,7 +12,6 @@ import BalanceCard from "@/components/others/balance-card";
 import DateDisplay from "@/components/others/date-display";
 import {AddCategoryPopupButton} from "@/components/popups/add-category-popup-button";
 import {AddMorePhoneNumbersPopupButton} from "@/components/popups/add-more-phone-numbers-popup-button";
-import { CancelInvoicePopupButton } from "@/components/popups/cancel-invoice-popup-button";
 import {DeleteConfirmationPopupButton} from "@/components/popups/delete-confirmation-popup-button";
 // import Image from "next/image";
 
@@ -38,7 +37,7 @@ export default function Home() {
         <SearchButton />
         <UndoButton />
         <DateDisplay />
-        <BalanceCard title="Clients Balance" balance={0} credit={0} debit={0} />
+        <BalanceCard title="Suppliers Balance" balance={0} credit={0} debit={0} />
       </div>
 
       <div className="h-16 bg-black rounded-md mt-10 mb-2">
@@ -51,7 +50,6 @@ export default function Home() {
         <AddCategoryPopupButton />
         <DeleteConfirmationPopupButton />
         <AddMorePhoneNumbersPopupButton />
-        <CancelInvoicePopupButton />
       </div>
     </div>
   );

@@ -10,6 +10,8 @@ dotenv.config();
 const systemInfoRoutes = require("./routes/systemInfoRoutes");
 const bankRoutes = require("./routes/bankRoutes");
 const supplierRoutes = require("./routes/supplierRoutes");
+const statementRoutes = require("./routes/statementRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 // 3.2 Import routes middleware
 
@@ -24,6 +26,8 @@ app.use(express.json()); // To parse JSON bodies
 app.use("/sysinfo", systemInfoRoutes);
 app.use("/bank", bankRoutes);
 app.use("/supplier", supplierRoutes);
+app.use("/statement", statementRoutes);
+app.use("/auth", authRoutes);
 
 // 8. Error handling middleware (must be at the end)
 app.use((err, req, res, next) => {

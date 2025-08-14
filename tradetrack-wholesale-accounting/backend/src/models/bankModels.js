@@ -180,6 +180,43 @@ async function getBankAccountList(bank_name, hotline, website_link) {
 // 	}
 // }
 
+async function getBankTransactions(accountNo) {
+  try {
+    const transactions = await prisma.statement.findMany({
+      where: {
+        accountNo: accountNo
+      },
+      include: {
+        bankclient: {
+          include: {
+            bank: true
+          }
+        },
+        owner: true
+      },
+      orderBy: {
+        date: 'desc'
+      }
+    });
+    return transactions;
+  } catch (error) {
+    console.error("Error getting bank transactions:", error);
+    throw error;
+  }
+}
+
+async function addBankTransaction(transactionData) {
+  try {
+    const newTransaction = await prisma.statement.create({
+      data: transactionData
+    });
+    return newTransaction;
+  } catch (error) {
+    console.error("Error adding bank transaction:", error);
+    throw error;
+  }
+}
+
 module.exports = {
   addBank,
   addBankAccount,
@@ -187,4 +224,6 @@ module.exports = {
   getBankAccount,
   deleteBank,
   getBankAccountList,
+  getBankTransactions,
+  addBankTransaction,
 };

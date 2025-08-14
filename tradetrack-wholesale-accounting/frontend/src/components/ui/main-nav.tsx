@@ -52,30 +52,16 @@ export function MainNav() {
           </NavigationMenuItem> */}
 
           <NavigationMenuItem>
-            <NavigationMenuLink href="/clients" className="flex items-center">
-              <PersonStanding className="w-4 h-4 mr-2" />
-              Clients
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-
-          {/* <NavigationMenuItem>
             <NavigationMenuLink href="/suppliers" className="flex items-center">
               <ShoppingCart className="w-4 h-4 mr-2" />
               Suppliers
             </NavigationMenuLink>
-          </NavigationMenuItem> */}
+          </NavigationMenuItem>
 
           <NavigationMenuItem>
             <NavigationMenuLink href="/admin-panel" className="flex items-center">
               <Settings className="w-4 h-4 mr-2" />
               Admin Panel
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/stocks" className="flex items-center">
-              <Package className="w-4 h-4 mr-2" />
-              Stocks
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

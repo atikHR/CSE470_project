@@ -1,0 +1,15 @@
+(node:30898) Warning: Accessing non-existent property 'get' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server is running on http://localhost:5001
+{
+  bank_name: 'Dhaka',
+  hotline: '222',
+  website_link: 'https://drive.google.com/drive/folders/1xWS-aWQp6T1EsktTTIfmcDfbOxEd4avM',
+  branch_name: 'bd'
+}
+{
+  bank_name: 'pp bank',
+  hotline: '457',
+  website_link: 'https://docs.google.com/document/d/1qMA2ihIA_FyjoRT3BsFXKcrnC97R8IayaWu-w647HSw/edit?tab=t.0',
+  branch_name: 'satkhira'
+}

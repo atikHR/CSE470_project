@@ -60,10 +60,91 @@ const getBankAccountList = async (req, res) => {
 	}
 };
 
+const addBankAccount = async (req, res) => {
+	try {
+		const { 
+			name, 
+			accountNo, 
+			accountType = "Savings", 
+			district, 
+			subDistrict, 
+			bankid,
+			addedby = 1 // Default owner ID
+		} = req.body;
+
+		const newAccount = await bankModels.addBankAccount(
+			name, 
+			accountNo, 
+			accountType, 
+			district, 
+			subDistrict, 
+			bankid, 
+			addedby
+		);
+		
+		res.status(201).json({ message: "Bank account added successfully!" });
+	} catch (error) {
+		console.error("Error adding bank account:", error);
+		res.status(500).json({ message: "Internal Server Error" });
+	}
+};
+
+const getBankTransactions = async (req, res) => {
+	try {
+		const { accountNo } = req.body;
+		const transactions = await bankModels.getBankTransactions(accountNo);
+		res.status(200).json({ list: transactions });
+	} catch (error) {
+		console.error("Error getting bank transactions:", error);
+		res.status(500).json({ message: "Internal Server Error" });
+	}
+};
+
+const addBankTransaction = async (req, res) => {
+	try {
+		const {
+			accountNo,
+			transactionType,
+			reference,
+			description,
+			quantity = 1,
+			rate = 0,
+			debit = 0,
+			credit = 0,
+			bankclientid,
+			addedby = 1 // Default owner ID
+		} = req.body;
+
+		const newTransaction = await bankModels.addBankTransaction({
+			accountNo,
+			transactionType,
+			reference,
+			description,
+			quantity,
+			rate,
+			debit,
+			credit,
+			bankclientid,
+			addedby
+		});
+
+		res.status(201).json({ 
+			message: "Bank transaction added successfully!",
+			transaction: newTransaction 
+		});
+	} catch (error) {
+		console.error("Error adding bank transaction:", error);
+		res.status(500).json({ message: "Internal Server Error" });
+	}
+};
+
 module.exports = {
 	getBankList,
 	addBank,
 	deleteBank,
 	getBankAccountInfo,
 	getBankAccountList,
+	addBankAccount,
+	getBankTransactions,
+	addBankTransaction,
 };
